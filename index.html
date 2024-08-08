@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        body {
+            overflow: auto;
+        }
+
+        main {
+            min-height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="display: flex; justify-content: center; flex-direction: column; margin: auto; width:fit-content;">
+        <div>
+            <h3>
+                Ещё совсем чуть-чуть!!
+            </h3>
+        </div>
+        <div id="main" style="display: none; text-align: center;">
+            <h1>Поздравляю с нашим днём!!!</h1>
+            <p>Я счастлив что мы с тобой когда то познакомились!!!</p>
+            <p>Ты мой лучик солнца с которым я рад просыпаться каждый день!</p>
+            <p>Я тебя очень сильно люблю <strong style="color: red;">&#9829;&#9829;&#9829;</strong> </p>
+            <p>Поиграем с тобой в игру, я тебе покажу фотографии, а ты поищешь это место и тебя будет ждать небольшой
+                сюрприз!</p>
+            <img src="./20240808_142132.jpg" alt=""
+                style="margin: 50px; max-width: 300px; width: 100%; object-fit: cover;">
+            <hr>
+            <img src="./20240808_141900.jpg" alt=""
+                style="margin: 50px; max-width: 300px; width: 100%; object-fit: cover;">
+            <hr>
+            <img src="./20240808_142031.jpg" alt=""
+                style="margin: 50px; max-width: 300px; width: 100%; object-fit: cover;">
+            <hr>
+            <img src="./20240808_141958.jpg" alt=""
+                style="margin: 50px; max-width: 300px; width: 100%; object-fit: cover;">
+        </div>
+    </div>
+    <script>
+        function setDailyRhythm(wakeUpTime) {
+
+            const goodMorning = () => {
+                var div = document.getElementById("main");
+
+                if (div.style.display == "none") {
+                    div.style.display = "block"
+                }
+            };
+
+            const checkTimewakeUp = setAlarm(wakeUpTime, goodMorning);
+
+            setInterval(checkTimewakeUp, 10000);
+        }
+
+        function setAlarm(time, callback) {
+            return function () {
+                const timeNow = new Date();
+                const hours = timeNow.getHours().toString();
+                const minutes = timeNow.getMinutes().toString();
+                let resultTime = "";
+
+                if (minutes.length < 2) {
+                    resultTime = hours + ":" + 0 + minutes;
+                } else if (minutes.length >= 2) {
+                    resultTime = hours + ":" + minutes;
+                }
+
+                if (resultTime === time) {
+                    callback();
+                }
+            }
+        }
+
+        setDailyRhythm('22:30');
+    </script>
+
+</body>
+
+</html>
